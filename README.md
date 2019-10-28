@@ -1,1 +1,3 @@
-# dietaryapp-js
+# dietary app
+
+Dietary app using Node.js
