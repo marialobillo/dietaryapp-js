@@ -8,7 +8,7 @@ const hostname = '127.0.0.1';
 const port = 8080;
 let data = '';
 
-fs.readFile('./food.json', 'utf8', (err, fileContents) => {
+fs.readFile('./public/food.json', 'utf8', (err, fileContents) => {
   if (err) {
     console.error(err);
     return;
@@ -24,14 +24,21 @@ fs.readFile('./food.json', 'utf8', (err, fileContents) => {
 
 const server = http.createServer((req, res) => {
 
- 
+  if(req.url === '/'){
+    res.statusCode = 200;
+    //res.setHeader('Content-Type', 'text/html')
+    res.end('Hello');
+  }
+
+  if(req.url === '/api/nutrients'){
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(data));
+    console.log(data['banana']);
+  }
+
   
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(data));
-
-
-  //console.log(data);
+  
 
 });
 
