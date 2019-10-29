@@ -28,7 +28,8 @@ module.exports = http.createServer((req, res) => {
     if(req.url === '/api/nutrients' && req.method == 'GET'){
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify(data));
+      //res.end(JSON.stringify(data));
+      res.end(data);
       console.log(typeof(data));
     } 
   
