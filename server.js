@@ -1,46 +1,10 @@
-const http = require('http');
-const fs = require('fs');
-
-//const fileContents = fs.readFileSync('./food.json', 'utf8');
-
 
 const hostname = '127.0.0.1';
 const port = 8080;
-let data = '';
 
-fs.readFile('./public/food.json', 'utf8', (err, fileContents) => {
-  if (err) {
-    console.error(err);
-    return;
-  }
-  try {
-    data = JSON.parse(fileContents);
-    
-  } catch(err) {
-    console.error(err);
-  }
-});
+const server = require('./controller.js');
 
 
-const server = http.createServer((req, res) => {
-
-  if(req.url === '/'){
-    res.statusCode = 200;
-    //res.setHeader('Content-Type', 'text/html')
-    res.end('Hello');
-  }
-
-  if(req.url === '/api/nutrients'){
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(data));
-    console.log(data['banana']);
-  }
-
-  
-  
-
-});
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
